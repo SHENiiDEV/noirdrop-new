@@ -32,22 +32,46 @@ class ProductGeneratorController extends Controller
     {
         $request->validate([
             'input_prompt' => 'required|string|min:3|max:3000',
+            'is_demo' => 'nullable|boolean',
         ]);
 
         $user = $request->user();
+        $isDemo = $request->boolean('is_demo') || !$user;
 
-        if ($user && $user->tokens_balance <= 0) {
+        $inputPrompt = $request->input('input_prompt');
+
+        // Sandbox #demo Mode: Uses instant fallback mock generator without token deduction
+        if ($isDemo) {
+            $drop = $deepSeekService->generateMockDrop($inputPrompt);
+            return response()->json([
+                'success' => true,
+                'is_demo' => true,
+                'generation' => [
+                    'id' => null,
+                    'user_id' => null,
+                    'input_prompt' => $inputPrompt,
+                    'seo_title' => $drop['title'],
+                    'description' => $drop['description'],
+                    'features_json' => $drop['bullets'],
+                    'social_copy' => $drop['social_post'],
+                    'created_at' => now()->toIso8601String(),
+                ],
+                'tokens_balance' => $user ? $user->tokens_balance : 0,
+            ]);
+        }
+
+        // Authenticated User Production Generation: Checks balance, calls Live DeepSeek API, and charges 1 token
+        if ($user->tokens_balance <= 0) {
             return response()->json([
                 'error' => 'You have run out of Drop tokens. Please top up to generate more products.',
                 'code' => 'OUT_OF_TOKENS',
             ], 402);
         }
 
-        $inputPrompt = $request->input('input_prompt');
         $drop = $deepSeekService->generateProductDrop($inputPrompt);
 
         $generation = Generation::create([
-            'user_id' => $user?->id,
+            'user_id' => $user->id,
             'input_prompt' => $inputPrompt,
             'seo_title' => $drop['title'],
             'description' => $drop['description'],
@@ -55,17 +79,13 @@ class ProductGeneratorController extends Controller
             'social_copy' => $drop['social_post'],
         ]);
 
-        $newBalance = $user ? $user->tokens_balance : 0;
-
-        if ($user) {
-            $user->decrement('tokens_balance');
-            $newBalance = $user->fresh()->tokens_balance;
-        }
+        $user->decrement('tokens_balance');
 
         return response()->json([
             'success' => true,
+            'is_demo' => false,
             'generation' => $generation,
-            'tokens_balance' => $newBalance,
+            'tokens_balance' => $user->fresh()->tokens_balance,
         ]);
     }
 

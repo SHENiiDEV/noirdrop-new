@@ -87,9 +87,9 @@ PROMPT;
     }
 
     /**
-     * Fallback mockup generator for offline/testing mode.
+     * Fallback mockup generator for sandbox/demo testing.
      */
-    protected function generateMockDrop(string $inputPrompt): array
+    public function generateMockDrop(string $inputPrompt): array
     {
         $cleanPrompt = trim($inputPrompt);
         $titleSeed = mb_strlen($cleanPrompt) > 40 ? mb_substr($cleanPrompt, 0, 40) . '...' : $cleanPrompt;

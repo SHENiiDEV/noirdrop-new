@@ -59,7 +59,7 @@ export default function Welcome({ auth, canLogin, canRegister }) {
           'Content-Type': 'application/json',
           'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '',
         },
-        body: JSON.stringify({ input_prompt: sandboxInput }),
+        body: JSON.stringify({ input_prompt: sandboxInput, is_demo: true }),
       });
 
       const data = await response.json();
