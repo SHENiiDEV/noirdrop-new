@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from '@inertiajs/react';
 import { Sparkles } from 'lucide-react';
 
-export default function GuestLayout({ children }) {
+export default function GuestLayout({ children, maxWidthClass = 'max-w-md' }) {
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center bg-zinc-950 p-4 sm:p-6 text-zinc-100 font-sans selection:bg-purple-500 selection:text-white overflow-hidden">
       
@@ -25,7 +25,7 @@ export default function GuestLayout({ children }) {
       </div>
 
       {/* Glassmorphic Auth Form Container */}
-      <div className="relative w-full max-w-md overflow-hidden rounded-2xl border border-zinc-800/90 bg-zinc-900/90 p-6 sm:p-8 shadow-2xl backdrop-blur-xl">
+      <div className={`relative w-full ${maxWidthClass} overflow-hidden rounded-2xl border border-zinc-800/90 bg-zinc-900/90 p-6 sm:p-8 shadow-2xl backdrop-blur-xl`}>
         {children}
       </div>
 
