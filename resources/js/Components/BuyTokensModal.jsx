@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { X, Zap, Check, ShieldCheck, CreditCard } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { toast } from 'sonner';
+import { useCurrency } from './CurrencyContext';
 
 export default function BuyTokensModal({ isOpen, onClose, onBuySuccess }) {
+  const { formatPrice, currentCurrency } = useCurrency();
   const [loading, setLoading] = useState(false);
   const [selectedPack, setSelectedPack] = useState(500); // Default 500 drops for €500
 
@@ -94,7 +96,7 @@ export default function BuyTokensModal({ isOpen, onClose, onBuySuccess }) {
                 )}
                 <span className="text-[11px] font-bold text-zinc-400 block">{pkg.label}</span>
                 <span className="mt-1 text-lg font-black text-white block">{pkg.drops} Drops</span>
-                <span className="text-xs font-semibold text-purple-400 block mt-0.5">€{pkg.price}</span>
+                <span className="text-xs font-semibold text-purple-400 block mt-0.5">{formatPrice(pkg.price)}</span>
               </div>
             ))}
           </div>
@@ -104,7 +106,7 @@ export default function BuyTokensModal({ isOpen, onClose, onBuySuccess }) {
             <ul className="space-y-2 text-xs text-zinc-300">
               <li className="flex items-center space-x-2">
                 <Check className="h-4 w-4 text-purple-400 shrink-0" />
-                <span><b>{selectedPack} Product Drops</b> (€1 per high-ticket generation)</span>
+                <span><b>{selectedPack} Product Drops</b> ({formatPrice(1)} per high-ticket generation)</span>
               </li>
               <li className="flex items-center space-x-2">
                 <Check className="h-4 w-4 text-purple-400 shrink-0" />
@@ -129,7 +131,7 @@ export default function BuyTokensModal({ isOpen, onClose, onBuySuccess }) {
               ) : (
                 <>
                   <CreditCard className="h-4 w-4" />
-                  <span>Confirm Purchase (€{selectedPack})</span>
+                  <span>Confirm Purchase ({formatPrice(selectedPack)})</span>
                 </>
               )}
             </button>

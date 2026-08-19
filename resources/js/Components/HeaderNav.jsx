@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from '@inertiajs/react';
 import { Sparkles, History, PlusCircle, LogOut, User, Zap } from 'lucide-react';
 import Dropdown from '@/Components/Dropdown';
+import CurrencySwitcher from './CurrencySwitcher';
 
 export default function HeaderNav({ user, tokensBalance, onOpenHistory, onOpenBuyTokens }) {
   const maxTokens = 100;
@@ -23,7 +24,7 @@ export default function HeaderNav({ user, tokensBalance, onOpenHistory, onOpenBu
                 <span className="text-lg font-bold tracking-tight text-white">Noir<span className="text-purple-400">drop</span></span>
                 <span className="rounded-full bg-purple-500/10 px-2 py-0.5 text-[10px] font-semibold text-purple-400 border border-purple-500/20">B2B SaaS</span>
               </div>
-              <span className="text-[11px] text-zinc-400">1-Click Product Generator</span>
+              <span className="text-[11px] text-zinc-400">1-Click Product Engine</span>
             </div>
           </Link>
         </div>
@@ -31,6 +32,9 @@ export default function HeaderNav({ user, tokensBalance, onOpenHistory, onOpenBu
         {/* Action Controls & Tokens Balance */}
         <div className="flex items-center space-x-3 sm:space-x-4">
           
+          {/* Currency Switcher */}
+          <CurrencySwitcher />
+
           {/* Token Progress Counter */}
           <div className="flex items-center space-x-2 rounded-full border border-zinc-800 bg-zinc-900/90 px-3.5 py-1.5 text-xs text-zinc-300 shadow-inner">
             <Zap className="h-4 w-4 text-purple-400 fill-purple-400/20" />

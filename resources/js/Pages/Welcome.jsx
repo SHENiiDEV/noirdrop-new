@@ -15,14 +15,21 @@ import {
   ArrowRight,
   ShieldCheck,
   Star,
-  Layers,
-  Clock,
-  TrendingUp,
   ChevronDown,
+  TrendingUp,
+  Globe,
+  Cpu,
+  Layers,
+  CheckSquare,
 } from 'lucide-react';
+import CurrencySwitcher from '@/Components/CurrencySwitcher';
+import CookieConsent from '@/Components/CookieConsent';
+import OfflineBanner from '@/Components/OfflineBanner';
+import { useCurrency } from '@/Components/CurrencyContext';
 
-export default function Welcome({ auth, canLogin, canRegister }) {
+export default function Welcome({ auth }) {
   const user = auth?.user;
+  const { formatPrice, currentCurrency } = useCurrency();
 
   // Interactive Live Sandbox State
   const [sandboxInput, setSandboxInput] = useState('Daft Punk - Random Access Memories (180g Vinyl 2LP)');
@@ -93,26 +100,29 @@ export default function Welcome({ auth, canLogin, canRegister }) {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 font-sans selection:bg-purple-500 selection:text-white">
+    <div className="min-h-screen bg-zinc-950 text-zinc-100 font-sans selection:bg-purple-500 selection:text-white relative overflow-x-hidden">
       <Head title="Noirdrop — 1-Click Product Generator B2B SaaS" />
       <Toaster position="top-right" theme="dark" richColors />
+      <OfflineBanner />
+      <CookieConsent />
 
-      {/* Background Neon Gradients */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[800px] bg-purple-600/15 blur-[140px] rounded-full" />
-        <div className="absolute top-96 -left-40 h-[400px] w-[500px] bg-indigo-600/10 blur-[140px] rounded-full" />
+      {/* Ambient Radial Neon Lights */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-[550px] w-[850px] bg-purple-600/15 blur-[150px] rounded-full" />
+        <div className="absolute top-96 -left-40 h-[450px] w-[550px] bg-indigo-600/10 blur-[150px] rounded-full" />
+        <div className="absolute bottom-40 -right-40 h-[450px] w-[550px] bg-purple-600/10 blur-[150px] rounded-full" />
       </div>
 
       {/* Navbar Header */}
       <nav className="sticky top-0 z-40 border-b border-zinc-800/80 bg-zinc-950/80 backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Link href="/" className="flex items-center space-x-2.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600 shadow-lg shadow-purple-500/20">
+          <Link href="/" className="flex items-center space-x-2.5 group">
+            <div className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600 shadow-lg shadow-purple-500/20 group-hover:scale-105 transition-transform">
               <Sparkles className="h-5 w-5 text-white" />
             </div>
             <div className="flex flex-col">
               <span className="text-lg font-bold tracking-tight text-white">Noir<span className="text-purple-400">drop</span></span>
-              <span className="text-[10px] text-zinc-400 -mt-1">1-Click Product Engine</span>
+              <span className="text-[10px] text-zinc-400 -mt-1 font-medium">HARTDELL LIMITED</span>
             </div>
           </Link>
 
@@ -123,6 +133,8 @@ export default function Welcome({ auth, canLogin, canRegister }) {
           </div>
 
           <div className="flex items-center space-x-3">
+            <CurrencySwitcher />
+
             {user ? (
               <Link
                 href={route('dashboard')}
@@ -153,10 +165,10 @@ export default function Welcome({ auth, canLogin, canRegister }) {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-16 pb-20 sm:pt-24 sm:pb-28 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-        <div className="inline-flex items-center space-x-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1.5 text-xs font-semibold text-purple-300 mb-6">
+      <section className="relative z-10 pt-16 pb-20 sm:pt-24 sm:pb-28 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+        <div className="inline-flex items-center space-x-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1.5 text-xs font-semibold text-purple-300 mb-6 backdrop-blur-md">
           <span className="flex h-2 w-2 rounded-full bg-purple-400 animate-ping" />
-          <span>High-Ticket B2B E-Commerce AI</span>
+          <span>High-Ticket B2B E-Commerce AI Engine</span>
         </div>
 
         <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-white leading-tight">
@@ -187,7 +199,7 @@ export default function Welcome({ auth, canLogin, canRegister }) {
           </a>
         </div>
 
-        {/* Social Proof */}
+        {/* Social Proof Badges */}
         <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-xs text-zinc-500">
           <div className="flex items-center space-x-1 text-amber-400">
             {[...Array(5)].map((_, i) => (
@@ -203,7 +215,7 @@ export default function Welcome({ auth, canLogin, canRegister }) {
       </section>
 
       {/* Live Interactive Sandbox Section */}
-      <section id="demo" className="py-16 bg-zinc-900/40 border-y border-zinc-800/80 relative">
+      <section id="demo" className="py-16 bg-zinc-900/40 border-y border-zinc-800/80 relative z-10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-10">
             <span className="text-xs font-bold uppercase tracking-wider text-purple-400">Interactive Sandbox</span>
@@ -345,7 +357,7 @@ export default function Welcome({ auth, canLogin, canRegister }) {
       </section>
 
       {/* Features Grid */}
-      <section id="features" className="py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="features" className="py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-14">
           <span className="text-xs font-bold uppercase tracking-wider text-purple-400">Features</span>
           <h2 className="text-3xl font-bold text-white mt-1">Built For High-Ticket E-Commerce Merchants</h2>
@@ -355,7 +367,7 @@ export default function Welcome({ auth, canLogin, canRegister }) {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6">
+          <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6 transition-transform hover:-translate-y-1">
             <div className="h-10 w-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 mb-4">
               <TrendingUp className="h-5 w-5" />
             </div>
@@ -365,7 +377,7 @@ export default function Welcome({ auth, canLogin, canRegister }) {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6">
+          <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6 transition-transform hover:-translate-y-1">
             <div className="h-10 w-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 mb-4">
               <BookOpen className="h-5 w-5" />
             </div>
@@ -375,7 +387,7 @@ export default function Welcome({ auth, canLogin, canRegister }) {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6">
+          <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6 transition-transform hover:-translate-y-1">
             <div className="h-10 w-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 mb-4">
               <Share2 className="h-5 w-5" />
             </div>
@@ -387,13 +399,13 @@ export default function Welcome({ auth, canLogin, canRegister }) {
         </div>
       </section>
 
-      {/* Pricing Section (€100 - €1,500 High Ticket) */}
-      <section id="pricing" className="py-20 bg-zinc-900/40 border-t border-zinc-800">
+      {/* Dynamic Pricing Section (€100 - €1,500 High Ticket) */}
+      <section id="pricing" className="py-20 bg-zinc-900/40 border-t border-zinc-800 relative z-10">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-12">
             <span className="text-xs font-bold uppercase tracking-wider text-purple-400">High-Ticket B2B Packages</span>
-            <h2 className="text-3xl font-bold text-white mt-1">1 Product Drop = €1</h2>
-            <p className="text-xs sm:text-sm text-zinc-400 mt-2">Select a package from €100 to €1,500 (€1 per product request).</p>
+            <h2 className="text-3xl font-bold text-white mt-1">1 Product Drop = {formatPrice(1)}</h2>
+            <p className="text-xs sm:text-sm text-zinc-400 mt-2">Select a package from {formatPrice(100)} to {formatPrice(1500)} ({formatPrice(1)} per product request).</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
@@ -402,9 +414,9 @@ export default function Welcome({ auth, canLogin, canRegister }) {
               <div>
                 <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Starter Pack</span>
                 <div className="mt-3 flex items-baseline">
-                  <span className="text-4xl font-black text-white">€100</span>
+                  <span className="text-4xl font-black text-white">{formatPrice(100)}</span>
                 </div>
-                <p className="text-xs text-zinc-400 mt-2">100 Product Drops (€1 / request).</p>
+                <p className="text-xs text-zinc-400 mt-2">100 Product Drops ({formatPrice(1)} / request).</p>
 
                 <ul className="mt-6 space-y-2.5 text-xs text-zinc-300">
                   <li className="flex items-center space-x-2">
@@ -426,7 +438,7 @@ export default function Welcome({ auth, canLogin, canRegister }) {
                 href={user ? route('dashboard') : route('register')}
                 className="mt-8 block text-center rounded-xl border border-zinc-800 bg-zinc-900 py-3 text-xs font-bold text-white hover:border-zinc-700 transition"
               >
-                Get 100 Drops (€100)
+                Get 100 Drops ({formatPrice(100)})
               </Link>
             </div>
 
@@ -439,9 +451,9 @@ export default function Welcome({ auth, canLogin, canRegister }) {
               <div>
                 <span className="text-xs font-bold text-purple-400 uppercase tracking-wider">Pro Merchant</span>
                 <div className="mt-3 flex items-baseline">
-                  <span className="text-4xl font-black text-white">€500</span>
+                  <span className="text-4xl font-black text-white">{formatPrice(500)}</span>
                 </div>
-                <p className="text-xs text-zinc-400 mt-2">500 Product Drops (€1 / request).</p>
+                <p className="text-xs text-zinc-400 mt-2">500 Product Drops ({formatPrice(1)} / request).</p>
 
                 <ul className="mt-6 space-y-2.5 text-xs text-zinc-300">
                   <li className="flex items-center space-x-2">
@@ -463,7 +475,7 @@ export default function Welcome({ auth, canLogin, canRegister }) {
                 href={user ? route('dashboard') : route('register')}
                 className="mt-8 block text-center rounded-xl bg-purple-600 py-3 text-xs font-bold text-white shadow-lg shadow-purple-600/30 hover:bg-purple-500 transition"
               >
-                Get 500 Drops (€500)
+                Get 500 Drops ({formatPrice(500)})
               </Link>
             </div>
 
@@ -472,9 +484,9 @@ export default function Welcome({ auth, canLogin, canRegister }) {
               <div>
                 <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Enterprise Suite</span>
                 <div className="mt-3 flex items-baseline">
-                  <span className="text-4xl font-black text-white">€1,500</span>
+                  <span className="text-4xl font-black text-white">{formatPrice(1500)}</span>
                 </div>
-                <p className="text-xs text-zinc-400 mt-2">1,500 Product Drops (€1 / request).</p>
+                <p className="text-xs text-zinc-400 mt-2">1,500 Product Drops ({formatPrice(1)} / request).</p>
 
                 <ul className="mt-6 space-y-2.5 text-xs text-zinc-300">
                   <li className="flex items-center space-x-2">
@@ -496,7 +508,7 @@ export default function Welcome({ auth, canLogin, canRegister }) {
                 href={user ? route('dashboard') : route('register')}
                 className="mt-8 block text-center rounded-xl border border-zinc-800 bg-zinc-900 py-3 text-xs font-bold text-white hover:border-zinc-700 transition"
               >
-                Get 1,500 Drops (€1,500)
+                Get 1,500 Drops ({formatPrice(1500)})
               </Link>
             </div>
 
@@ -505,7 +517,7 @@ export default function Welcome({ auth, canLogin, canRegister }) {
       </section>
 
       {/* Footer with HARTDELL LIMITED details */}
-      <footer className="border-t border-zinc-900 bg-zinc-950 py-10 text-xs text-zinc-500">
+      <footer className="border-t border-zinc-900 bg-zinc-950 py-10 text-xs text-zinc-500 relative z-10">
         <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex flex-col space-y-3">
             <div className="flex items-center space-x-2.5">
