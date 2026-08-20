@@ -62,7 +62,7 @@ export default function Contact({ companyName, companyNumber, companyAddress, su
           </div>
           <h1 className="text-3xl sm:text-4xl font-black text-white">Get in Touch with Our Team</h1>
           <p className="text-xs sm:text-sm text-zinc-400 mt-2">
-            Have questions about your B2B account, token packages, or custom enterprise setup? We respond within hours.
+            Have questions about your B2B account, token packages, or custom enterprise setup? Support SLA: 24–48 hours.
           </p>
         </div>
 

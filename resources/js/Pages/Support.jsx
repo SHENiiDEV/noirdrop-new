@@ -8,6 +8,10 @@ export default function Support({ supportEmail = 'support@noirdrop.co.uk' }) {
 
   const faqs = [
     {
+      q: 'What is the standard support response SLA?',
+      a: 'Our executive support desk operates under a guaranteed Service Level Agreement (SLA) of 24–48 hours for all merchant tickets and inquiries.',
+    },
+    {
       q: 'How do B2B Drop token credit packages work?',
       a: 'Tokens represent digital execution credits where 1 Drop Request = 1€ (or currency equivalent). Packages range from €100 for 100 Drops to €1,500 for 1,500 Drops. Credits never expire and remain active on your account balance until redeemed.',
     },
@@ -82,7 +86,7 @@ export default function Support({ supportEmail = 'support@noirdrop.co.uk' }) {
               </div>
               <h2 className="text-base font-bold text-white">Executive Email Support</h2>
               <p className="text-xs text-zinc-400 mt-2 leading-relaxed">
-                Direct inquiry line with guaranteed priority response within hours for merchant accounts.
+                Direct inquiry line with guaranteed support response SLA of 24–48 hours for merchant accounts.
               </p>
             </div>
             <a
