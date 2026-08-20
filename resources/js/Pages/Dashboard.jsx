@@ -20,13 +20,14 @@ import HistoryDrawer from '@/Components/HistoryDrawer';
 import BuyTokensModal from '@/Components/BuyTokensModal';
 import BentoCard from '@/Components/BentoCard';
 
-export default function Dashboard({ tokensBalance: initialTokens, initialHistory }) {
+export default function Dashboard({ tokensBalance: initialTokens, initialHistory, payments: initialPayments }) {
   const { auth } = usePage().props;
   const user = auth.user;
 
   const [inputPrompt, setInputPrompt] = useState('');
-  const [tokensBalance, setTokensBalance] = useState(initialTokens ?? 10);
+  const [tokensBalance, setTokensBalance] = useState(initialTokens ?? 0);
   const [history, setHistory] = useState(initialHistory || []);
+  const [payments, setPayments] = useState(initialPayments || []);
   const [isGenerating, setIsGenerating] = useState(false);
   const [currentDrop, setCurrentDrop] = useState(null);
 
@@ -343,6 +344,7 @@ export default function Dashboard({ tokensBalance: initialTokens, initialHistory
         isOpen={isHistoryOpen}
         onClose={() => setIsHistoryOpen(false)}
         history={history}
+        payments={payments}
         onSelectDrop={handleSelectHistoryDrop}
       />
 

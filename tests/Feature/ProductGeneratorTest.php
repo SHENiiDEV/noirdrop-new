@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Payment;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -45,6 +46,11 @@ class ProductGeneratorTest extends TestCase
             'input_prompt' => 'Minimalist Leather Cardholder Wallet',
         ]);
 
+        $this->assertDatabaseHas('payments', [
+            'user_id' => $user->id,
+            'type' => 'generation',
+        ]);
+
         $this->assertEquals(9, $user->fresh()->tokens_balance);
     }
 
@@ -74,6 +80,55 @@ class ProductGeneratorTest extends TestCase
                 'tokens_balance' => 102,
             ]);
 
+        $this->assertDatabaseHas('payments', [
+            'user_id' => $user->id,
+            'type' => 'topup',
+            'amount' => 100.00,
+        ]);
+
         $this->assertEquals(102, $user->fresh()->tokens_balance);
+    }
+
+    public function test_user_can_download_own_invoice(): void
+    {
+        $user = User::factory()->create();
+        $payment = Payment::create([
+            'user_id' => $user->id,
+            'type' => 'topup',
+            'service_name' => 'Starter Pack (100 Drops)',
+            'amount' => 100.00,
+            'currency' => 'EUR',
+            'gateway_reference' => 'TOPUP-TEST1234',
+            'status' => 'paid',
+            'tokens_added' => 100,
+            'tokens_balance_after' => 100,
+        ]);
+
+        $response = $this->actingAs($user)->get("/wallet/invoice/{$payment->id}");
+
+        $response->assertStatus(200)
+            ->assertHeader('content-type', 'application/pdf');
+    }
+
+    public function test_user_cannot_download_other_users_invoice(): void
+    {
+        $user1 = User::factory()->create();
+        $user2 = User::factory()->create();
+
+        $payment = Payment::create([
+            'user_id' => $user1->id,
+            'type' => 'topup',
+            'service_name' => 'Starter Pack (100 Drops)',
+            'amount' => 100.00,
+            'currency' => 'EUR',
+            'gateway_reference' => 'TOPUP-SECRET123',
+            'status' => 'paid',
+            'tokens_added' => 100,
+            'tokens_balance_after' => 100,
+        ]);
+
+        $response = $this->actingAs($user2)->get("/wallet/invoice/{$payment->id}");
+
+        $response->assertStatus(403);
     }
 }

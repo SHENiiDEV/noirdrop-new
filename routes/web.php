@@ -27,6 +27,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [ProductGeneratorController::class, 'index'])->name('dashboard');
     Route::get('/history', [ProductGeneratorController::class, 'history'])->name('history');
     Route::post('/buy-tokens', [ProductGeneratorController::class, 'buyTokens'])->name('buy-tokens');
+    Route::get('/wallet/invoice/{payment}', [ProductGeneratorController::class, 'downloadInvoice'])->name('wallet.invoice');
 });
 
 Route::middleware('auth')->group(function () {
