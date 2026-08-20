@@ -21,6 +21,8 @@ import {
   Cpu,
   Layers,
   CheckSquare,
+  Menu,
+  X,
 } from 'lucide-react';
 import CurrencySwitcher from '@/Components/CurrencySwitcher';
 import CookieConsent from '@/Components/CookieConsent';
@@ -30,6 +32,7 @@ import { useCurrency } from '@/Components/CurrencyContext';
 export default function Welcome({ auth }) {
   const user = auth?.user;
   const { formatPrice, currentCurrency } = useCurrency();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Interactive Live Sandbox State
   const [sandboxInput, setSandboxInput] = useState('Daft Punk - Random Access Memories (180g Vinyl 2LP)');
@@ -132,7 +135,7 @@ export default function Welcome({ auth }) {
             <a href="#pricing" className="hover:text-purple-400 transition">Pricing</a>
           </div>
 
-          <div className="flex items-center space-x-3">
+          <div className="hidden md:flex items-center space-x-3">
             <CurrencySwitcher />
 
             {user ? (
@@ -161,8 +164,85 @@ export default function Welcome({ auth }) {
               </>
             )}
           </div>
+
+          {/* Mobile Hamburger Toggle Button */}
+          <div className="flex items-center space-x-2 md:hidden">
+            <CurrencySwitcher />
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="rounded-xl border border-zinc-800 bg-zinc-900/90 p-2 text-zinc-300 hover:border-purple-500/50 hover:text-white transition"
+              aria-label="Toggle Mobile Menu"
+            >
+              {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
       </nav>
+
+      {/* Mobile Right Slide-Over Navigation Drawer */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-50 overflow-hidden md:hidden">
+          <div className="fixed inset-0 bg-black/70 backdrop-blur-sm transition-opacity" onClick={() => setIsMobileMenuOpen(false)} />
+
+          <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
+            <div className="w-72 border-l border-zinc-800 bg-zinc-950/95 p-6 shadow-2xl backdrop-blur-2xl flex flex-col justify-between animate-in slide-in-from-right duration-300">
+              <div>
+                <div className="flex items-center justify-between pb-4 border-b border-zinc-800">
+                  <div className="flex items-center space-x-2.5">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600">
+                      <Sparkles className="h-4 w-4 text-white" />
+                    </div>
+                    <span className="font-black text-white text-base">Noir<span className="text-purple-400">drop</span></span>
+                  </div>
+                  <button
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="rounded-lg p-1.5 text-zinc-400 hover:bg-zinc-900 hover:text-white transition"
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
+                </div>
+
+                <div className="mt-6 flex flex-col space-y-4 text-sm font-medium text-zinc-200">
+                  <a href="#demo" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-purple-400 transition py-2 border-b border-zinc-900">Live Demo</a>
+                  <a href="#features" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-purple-400 transition py-2 border-b border-zinc-900">Features</a>
+                  <a href="#pricing" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-purple-400 transition py-2 border-b border-zinc-900">Pricing</a>
+                </div>
+
+                <div className="mt-8 space-y-3">
+                  {user ? (
+                    <Link
+                      href={route('dashboard')}
+                      className="flex w-full items-center justify-center space-x-2 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 py-3 text-xs font-bold text-white shadow-lg"
+                    >
+                      <span>Go to Dashboard</span>
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  ) : (
+                    <div className="flex flex-col space-y-2.5">
+                      <Link
+                        href={route('login')}
+                        className="w-full text-center rounded-xl border border-zinc-800 bg-zinc-900 py-3 text-xs font-semibold text-zinc-200 hover:border-zinc-700"
+                      >
+                        Log In
+                      </Link>
+                      <Link
+                        href={route('register')}
+                        className="w-full text-center rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 py-3 text-xs font-bold text-white shadow-lg"
+                      >
+                        Get Started
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="pt-6 border-t border-zinc-900 text-center text-[10px] text-zinc-500">
+                HARTDELL LIMITED — Co. 16021824
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Hero Section */}
       <section className="relative z-10 pt-16 pb-20 sm:pt-24 sm:pb-28 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">

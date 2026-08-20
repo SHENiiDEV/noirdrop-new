@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from '@inertiajs/react';
-import { Sparkles, History, PlusCircle, LogOut, User, Zap } from 'lucide-react';
+import { Sparkles, History, PlusCircle, LogOut, User, Zap, Menu, X } from 'lucide-react';
 import Dropdown from '@/Components/Dropdown';
 import CurrencySwitcher from './CurrencySwitcher';
 
 export default function HeaderNav({ user, tokensBalance, onOpenHistory, onOpenBuyTokens }) {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const maxTokens = 100;
   const percentage = Math.min(100, Math.max(0, (tokensBalance / maxTokens) * 100));
 
@@ -29,8 +30,8 @@ export default function HeaderNav({ user, tokensBalance, onOpenHistory, onOpenBu
           </Link>
         </div>
 
-        {/* Action Controls & Tokens Balance */}
-        <div className="flex items-center space-x-3 sm:space-x-4">
+        {/* Action Controls & Tokens Balance (Desktop) */}
+        <div className="hidden sm:flex items-center space-x-3 sm:space-x-4">
           
           {/* Currency Switcher */}
           <CurrencySwitcher />
@@ -43,7 +44,7 @@ export default function HeaderNav({ user, tokensBalance, onOpenHistory, onOpenBu
               <span className="text-zinc-500">/</span>
               <span className="text-zinc-400">Drops</span>
             </div>
-            <div className="hidden h-1.5 w-12 rounded-full bg-zinc-800 sm:block overflow-hidden">
+            <div className="hidden h-1.5 w-12 rounded-full bg-zinc-800 md:block overflow-hidden">
               <div 
                 className="h-full rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 transition-all duration-500" 
                 style={{ width: `${percentage}%` }}
@@ -55,7 +56,7 @@ export default function HeaderNav({ user, tokensBalance, onOpenHistory, onOpenBu
               title="Top up tokens"
             >
               <PlusCircle className="h-3.5 w-3.5" />
-              <span className="hidden sm:inline">Top Up</span>
+              <span>Top Up</span>
             </button>
           </div>
 
@@ -65,7 +66,7 @@ export default function HeaderNav({ user, tokensBalance, onOpenHistory, onOpenBu
             className="flex items-center space-x-2 rounded-xl border border-zinc-800 bg-zinc-900/80 px-3.5 py-2 text-xs font-medium text-zinc-300 transition hover:border-zinc-700 hover:bg-zinc-800 hover:text-white"
           >
             <History className="h-4 w-4 text-purple-400" />
-            <span className="hidden md:inline">History</span>
+            <span>History</span>
           </button>
 
           {/* User Profile Dropdown */}
@@ -77,7 +78,7 @@ export default function HeaderNav({ user, tokensBalance, onOpenHistory, onOpenBu
                     <div className="flex h-6 w-6 items-center justify-center rounded-full bg-purple-500/20 text-purple-300 font-bold text-xs">
                       {user.name.charAt(0).toUpperCase()}
                     </div>
-                    <span className="hidden sm:inline font-medium">{user.name}</span>
+                    <span className="font-medium">{user.name}</span>
                   </button>
                 </Dropdown.Trigger>
 
@@ -108,7 +109,103 @@ export default function HeaderNav({ user, tokensBalance, onOpenHistory, onOpenBu
           )}
         </div>
 
+        {/* Mobile Controls & Hamburger Button */}
+        <div className="flex items-center space-x-2 sm:hidden">
+          <CurrencySwitcher />
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="rounded-xl border border-zinc-800 bg-zinc-900/90 p-2 text-zinc-300 hover:border-purple-500/50 hover:text-white transition"
+            aria-label="Toggle Mobile Navigation"
+          >
+            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
+
       </div>
+
+      {/* Mobile Right Slide-Over Navigation Drawer */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-50 overflow-hidden sm:hidden">
+          <div className="fixed inset-0 bg-black/70 backdrop-blur-sm transition-opacity" onClick={() => setIsMobileMenuOpen(false)} />
+
+          <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
+            <div className="w-72 border-l border-zinc-800 bg-zinc-950/95 p-6 shadow-2xl backdrop-blur-2xl flex flex-col justify-between animate-in slide-in-from-right duration-300">
+              <div>
+                <div className="flex items-center justify-between pb-4 border-b border-zinc-800">
+                  <div className="flex items-center space-x-2.5">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600">
+                      <Sparkles className="h-4 w-4 text-white" />
+                    </div>
+                    <span className="font-bold text-white text-sm">Dashboard Menu</span>
+                  </div>
+                  <button
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="rounded-lg p-1.5 text-zinc-400 hover:bg-zinc-900 hover:text-white transition"
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
+                </div>
+
+                {/* Token Balance Card */}
+                <div className="mt-5 rounded-2xl border border-purple-500/30 bg-purple-950/20 p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs text-purple-300 font-semibold">Drop Tokens Balance</span>
+                    <span className="text-sm font-black text-white">{tokensBalance} Drops</span>
+                  </div>
+                  <button
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      onOpenBuyTokens();
+                    }}
+                    className="flex w-full items-center justify-center space-x-1.5 rounded-xl bg-purple-600 py-2 text-xs font-bold text-white shadow-lg"
+                  >
+                    <PlusCircle className="h-4 w-4" />
+                    <span>Top Up Tokens</span>
+                  </button>
+                </div>
+
+                {/* Action Items */}
+                <div className="mt-5 space-y-2">
+                  <button
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      onOpenHistory();
+                    }}
+                    className="flex w-full items-center space-x-2.5 rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-3 text-xs font-semibold text-zinc-200 hover:text-white transition"
+                  >
+                    <History className="h-4 w-4 text-purple-400" />
+                    <span>History & PDF Invoices</span>
+                  </button>
+
+                  <Link
+                    href={route('profile.edit')}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex w-full items-center space-x-2.5 rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-3 text-xs font-semibold text-zinc-200 hover:text-white transition"
+                  >
+                    <User className="h-4 w-4 text-purple-400" />
+                    <span>Profile Settings</span>
+                  </Link>
+
+                  <Link
+                    href={route('logout')}
+                    method="post"
+                    as="button"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex w-full items-center space-x-2.5 rounded-xl border border-rose-500/30 bg-rose-950/20 px-4 py-3 text-xs font-semibold text-rose-300 hover:text-rose-200 transition"
+                  >
+                    <LogOut className="h-4 w-4 text-rose-400" />
+                    <span>Log Out</span>
+                  </Link>
+                </div>
+              </div>
+
+              <div className="pt-6 border-t border-zinc-900 text-center text-[10px] text-zinc-500">
+                HARTDELL LIMITED — Co. 16021824
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
