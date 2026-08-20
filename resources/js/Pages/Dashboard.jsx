@@ -357,7 +357,11 @@ export default function Dashboard({ tokensBalance: initialTokens, initialHistory
 
       {/* Footer */}
       <footer className="border-t border-zinc-900 bg-zinc-950 py-6 text-center text-xs text-zinc-500 space-y-2">
-        <div className="flex justify-center space-x-4 text-xs font-medium text-zinc-400">
+        <div className="flex flex-wrap justify-center gap-4 text-xs font-medium text-zinc-400">
+          <Link href={route('how-it-works')} className="hover:text-purple-300 transition">How It Works</Link>
+          <Link href={route('about')} className="hover:text-purple-300 transition">About Us</Link>
+          <Link href={route('support')} className="hover:text-purple-300 transition">Support</Link>
+          <Link href={route('contact')} className="hover:text-purple-300 transition">Contact Us</Link>
           <Link href={route('legal.terms')} className="hover:text-purple-300 transition">Terms</Link>
           <Link href={route('legal.privacy')} className="hover:text-purple-300 transition">Privacy</Link>
           <Link href={route('legal.refunds')} className="hover:text-purple-300 transition">Refunds</Link>

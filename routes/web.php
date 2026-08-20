@@ -16,6 +16,14 @@ Route::get('/', function () {
     ]);
 });
 
+use App\Http\Controllers\ContactController;
+
+Route::get('/how-it-works', fn () => Inertia::render('HowItWorks'))->name('how-it-works');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
+Route::get('/support', fn () => Inertia::render('Support'))->name('support');
+Route::get('/about', fn () => Inertia::render('About'))->name('about');
+
 Route::get('/terms', fn () => Inertia::render('Legal/Terms'))->name('legal.terms');
 Route::get('/privacy', fn () => Inertia::render('Legal/Privacy'))->name('legal.privacy');
 Route::get('/refunds', fn () => Inertia::render('Legal/Refunds'))->name('legal.refunds');

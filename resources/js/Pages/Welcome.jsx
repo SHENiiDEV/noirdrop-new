@@ -129,10 +129,13 @@ export default function Welcome({ auth }) {
             </div>
           </Link>
 
-          <div className="hidden md:flex items-center space-x-8 text-xs font-medium text-zinc-300">
-            <a href="#demo" className="hover:text-purple-400 transition">Live Demo</a>
+          <div className="hidden md:flex items-center space-x-6 text-xs font-medium text-zinc-300">
+            <Link href={route('how-it-works')} className="hover:text-purple-400 transition">How It Works</Link>
             <a href="#features" className="hover:text-purple-400 transition">Features</a>
             <a href="#pricing" className="hover:text-purple-400 transition">Pricing</a>
+            <Link href={route('about')} className="hover:text-purple-400 transition">About Us</Link>
+            <Link href={route('support')} className="hover:text-purple-400 transition">Support</Link>
+            <Link href={route('contact')} className="hover:text-purple-400 transition">Contact</Link>
           </div>
 
           <div className="hidden md:flex items-center space-x-3">
@@ -202,10 +205,14 @@ export default function Welcome({ auth }) {
                   </button>
                 </div>
 
-                <div className="mt-6 flex flex-col space-y-4 text-sm font-medium text-zinc-200">
-                  <a href="#demo" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-purple-400 transition py-2 border-b border-zinc-900">Live Demo</a>
-                  <a href="#features" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-purple-400 transition py-2 border-b border-zinc-900">Features</a>
-                  <a href="#pricing" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-purple-400 transition py-2 border-b border-zinc-900">Pricing</a>
+                <div className="mt-6 flex flex-col space-y-3 text-sm font-medium text-zinc-200">
+                  <Link href={route('how-it-works')} onClick={() => setIsMobileMenuOpen(false)} className="hover:text-purple-400 transition py-1.5 border-b border-zinc-900">How It Works</Link>
+                  <a href="#demo" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-purple-400 transition py-1.5 border-b border-zinc-900">Live Demo</a>
+                  <a href="#features" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-purple-400 transition py-1.5 border-b border-zinc-900">Features</a>
+                  <a href="#pricing" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-purple-400 transition py-1.5 border-b border-zinc-900">Pricing</a>
+                  <Link href={route('about')} onClick={() => setIsMobileMenuOpen(false)} className="hover:text-purple-400 transition py-1.5 border-b border-zinc-900">About Us</Link>
+                  <Link href={route('support')} onClick={() => setIsMobileMenuOpen(false)} className="hover:text-purple-400 transition py-1.5 border-b border-zinc-900">Support</Link>
+                  <Link href={route('contact')} onClick={() => setIsMobileMenuOpen(false)} className="hover:text-purple-400 transition py-1.5 border-b border-zinc-900">Contact Us</Link>
                 </div>
 
                 <div className="mt-8 space-y-3">
@@ -610,12 +617,16 @@ export default function Welcome({ auth }) {
               </div>
             </div>
 
-            {/* Legal Links */}
+            {/* Legal & Page Links */}
             <div className="flex flex-wrap gap-4 text-xs font-medium text-zinc-400">
-              <Link href={route('legal.terms')} className="hover:text-purple-300 transition">Terms of Service</Link>
-              <Link href={route('legal.privacy')} className="hover:text-purple-300 transition">Privacy Policy</Link>
-              <Link href={route('legal.refunds')} className="hover:text-purple-300 transition">Refund Policy</Link>
-              <Link href={route('legal.imprint')} className="hover:text-purple-300 transition">Legal Notice (Imprint)</Link>
+              <Link href={route('how-it-works')} className="hover:text-purple-300 transition">How It Works</Link>
+              <Link href={route('about')} className="hover:text-purple-300 transition">About Us</Link>
+              <Link href={route('support')} className="hover:text-purple-300 transition">Support Desk</Link>
+              <Link href={route('contact')} className="hover:text-purple-300 transition">Contact Us</Link>
+              <Link href={route('legal.terms')} className="hover:text-purple-300 transition">Terms</Link>
+              <Link href={route('legal.privacy')} className="hover:text-purple-300 transition">Privacy</Link>
+              <Link href={route('legal.refunds')} className="hover:text-purple-300 transition">Refunds</Link>
+              <Link href={route('legal.imprint')} className="hover:text-purple-300 transition">Legal Notice</Link>
             </div>
           </div>
 
