@@ -71,22 +71,22 @@ class ProductGeneratorTest extends TestCase
         $user = User::factory()->create(['tokens_balance' => 2]);
 
         $response = $this->actingAs($user)->postJson('/buy-tokens', [
-            'amount' => 100,
+            'amount' => 659,
         ]);
 
         $response->assertStatus(200)
             ->assertJson([
                 'success' => true,
-                'tokens_balance' => 102,
+                'tokens_balance' => 661,
             ]);
 
         $this->assertDatabaseHas('payments', [
             'user_id' => $user->id,
             'type' => 'topup',
-            'amount' => 100.00,
+            'amount' => 659.00,
         ]);
 
-        $this->assertEquals(102, $user->fresh()->tokens_balance);
+        $this->assertEquals(661, $user->fresh()->tokens_balance);
     }
 
     public function test_user_can_download_own_invoice(): void

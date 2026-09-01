@@ -141,17 +141,19 @@ class ProductGeneratorController extends Controller
      */
     public function buyTokens(Request $request): JsonResponse
     {
-        $amount = (int) $request->input('amount', 500);
-        if (!in_array($amount, [100, 250, 500, 1000, 1500])) {
-            $amount = 500;
+        $amount = (int) $request->input('amount', 2499);
+        $validAmounts = [659, 1299, 2499, 4299, 6499, 8999];
+        if (!in_array($amount, $validAmounts)) {
+            $amount = 2499;
         }
 
         $packageNames = [
-            100 => 'Starter Pack (100 Drops)',
-            250 => 'Growth Pack (250 Drops)',
-            500 => 'Pro Merchant Pack (500 Drops)',
-            1000 => 'Scale Suite (1,000 Drops)',
-            1500 => 'Enterprise Suite (1,500 Drops)',
+            659 => 'Starter Merchant (659 Drops)',
+            1299 => 'Growth Brand (1,299 Drops)',
+            2499 => 'Pro Merchant (2,499 Drops)',
+            4299 => 'Institutional Scale (4,299 Drops)',
+            6499 => 'Enterprise Suite (6,499 Drops)',
+            8999 => 'Ultimate Syndicate (8,999 Drops)',
         ];
 
         $user = $request->user();

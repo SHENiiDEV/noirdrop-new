@@ -15,18 +15,8 @@ export default function HeaderNav({ user, tokensBalance, onOpenHistory, onOpenBu
         
         {/* Brand Logo */}
         <div className="flex items-center space-x-3">
-          <Link href="/dashboard" className="group flex items-center space-x-2.5">
-            <div className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600 shadow-lg shadow-purple-500/20 transition-transform duration-300 group-hover:scale-105">
-              <Sparkles className="h-5 w-5 text-white animate-pulse" />
-              <div className="absolute -inset-0.5 rounded-xl bg-purple-500/30 opacity-0 blur transition-opacity group-hover:opacity-100" />
-            </div>
-            <div className="flex flex-col">
-              <div className="flex items-center space-x-1.5">
-                <span className="text-lg font-bold tracking-tight text-white">Noir<span className="text-purple-400">drop</span></span>
-                <span className="rounded-full bg-purple-500/10 px-2 py-0.5 text-[10px] font-semibold text-purple-400 border border-purple-500/20">B2B SaaS</span>
-              </div>
-              <span className="text-[11px] text-zinc-400">1-Click Product Engine</span>
-            </div>
+          <Link href="/dashboard" className="group flex items-center">
+            <img src="/images/noirdrop-logo.png" alt="NoirDrop" className="h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
           </Link>
         </div>
 

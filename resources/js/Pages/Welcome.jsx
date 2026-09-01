@@ -119,14 +119,8 @@ export default function Welcome({ auth }) {
       {/* Navbar Header */}
       <nav className="sticky top-0 z-40 border-b border-zinc-800/80 bg-zinc-950/80 backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Link href="/" className="flex items-center space-x-2.5 group">
-            <div className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600 shadow-lg shadow-purple-500/20 group-hover:scale-105 transition-transform">
-              <Sparkles className="h-5 w-5 text-white" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-lg font-bold tracking-tight text-white">Noir<span className="text-purple-400">drop</span></span>
-              <span className="text-[10px] text-zinc-400 -mt-1 font-medium">HARTDELL LIMITED</span>
-            </div>
+          <Link href="/" className="flex items-center group">
+            <img src="/images/noirdrop-logo.png" alt="NoirDrop" className="h-9 w-auto object-contain group-hover:scale-105 transition-transform" />
           </Link>
 
           <div className="hidden md:flex items-center space-x-6 text-xs font-medium text-zinc-300">
@@ -486,29 +480,30 @@ export default function Welcome({ auth }) {
         </div>
       </section>
 
-      {/* Dynamic Pricing Section (€100 - €1,500 High Ticket) */}
+      {/* Dynamic Pricing Section (€659 - €8,999 High Ticket) */}
       <section id="pricing" className="py-20 bg-zinc-900/40 border-t border-zinc-800 relative z-10">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-12">
             <span className="text-xs font-bold uppercase tracking-wider text-purple-400">High-Ticket B2B Packages</span>
             <h2 className="text-3xl font-bold text-white mt-1">1 Product Drop = {formatPrice(1)}</h2>
-            <p className="text-xs sm:text-sm text-zinc-400 mt-2">Select a package from {formatPrice(100)} to {formatPrice(1500)} ({formatPrice(1)} per product request).</p>
+            <p className="text-xs sm:text-sm text-zinc-400 mt-2">Choose from 6 enterprise tiers from {formatPrice(659)} to {formatPrice(8999)} with official UK PDF tax invoices.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {/* Starter Pack (€100) */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            {/* 1. Starter Merchant (€659) */}
             <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-6 flex flex-col justify-between">
               <div>
-                <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Starter Pack</span>
+                <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Starter Merchant</span>
                 <div className="mt-3 flex items-baseline">
-                  <span className="text-4xl font-black text-white">{formatPrice(100)}</span>
+                  <span className="text-3xl font-black text-white">{formatPrice(659)}</span>
                 </div>
-                <p className="text-xs text-zinc-400 mt-2">100 Product Drops ({formatPrice(1)} / request).</p>
+                <p className="text-xs text-zinc-400 mt-2">659 Product Drops ({formatPrice(1)} / request).</p>
 
                 <ul className="mt-6 space-y-2.5 text-xs text-zinc-300">
                   <li className="flex items-center space-x-2">
                     <CheckCircle2 className="h-4 w-4 text-purple-400 shrink-0" />
-                    <span>100 Full Product Drops</span>
+                    <span>659 Full Product Drops</span>
                   </li>
                   <li className="flex items-center space-x-2">
                     <CheckCircle2 className="h-4 w-4 text-purple-400 shrink-0" />
@@ -516,7 +511,7 @@ export default function Welcome({ auth }) {
                   </li>
                   <li className="flex items-center space-x-2">
                     <CheckCircle2 className="h-4 w-4 text-purple-400 shrink-0" />
-                    <span>Proprietary B2B AI Engine</span>
+                    <span>Official UK B2B Tax Invoice</span>
                   </li>
                 </ul>
               </div>
@@ -525,31 +520,27 @@ export default function Welcome({ auth }) {
                 href={user ? route('dashboard') : route('register')}
                 className="mt-8 block text-center rounded-xl border border-zinc-800 bg-zinc-900 py-3 text-xs font-bold text-white hover:border-zinc-700 transition"
               >
-                Get 100 Drops ({formatPrice(100)})
+                Get 659 Drops ({formatPrice(659)})
               </Link>
             </div>
 
-            {/* Pro Pack (€500) */}
-            <div className="rounded-2xl border border-purple-500/40 bg-gradient-to-b from-purple-950/20 to-zinc-950 p-6 flex flex-col justify-between shadow-2xl relative">
-              <div className="absolute -top-3 right-6 rounded-full bg-purple-600 px-3 py-0.5 text-[10px] font-bold text-white uppercase tracking-wider shadow">
-                Best Value
-              </div>
-
+            {/* 2. Growth Brand (€1,299) */}
+            <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-6 flex flex-col justify-between">
               <div>
-                <span className="text-xs font-bold text-purple-400 uppercase tracking-wider">Pro Merchant</span>
+                <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Growth Brand</span>
                 <div className="mt-3 flex items-baseline">
-                  <span className="text-4xl font-black text-white">{formatPrice(500)}</span>
+                  <span className="text-3xl font-black text-white">{formatPrice(1299)}</span>
                 </div>
-                <p className="text-xs text-zinc-400 mt-2">500 Product Drops ({formatPrice(1)} / request).</p>
+                <p className="text-xs text-zinc-400 mt-2">1,299 Product Drops ({formatPrice(1)} / request).</p>
 
                 <ul className="mt-6 space-y-2.5 text-xs text-zinc-300">
                   <li className="flex items-center space-x-2">
                     <CheckCircle2 className="h-4 w-4 text-purple-400 shrink-0" />
-                    <span>500 Full Product Drops</span>
+                    <span>1,299 Full Product Drops</span>
                   </li>
                   <li className="flex items-center space-x-2">
                     <CheckCircle2 className="h-4 w-4 text-purple-400 shrink-0" />
-                    <span>Priority Processing Speed</span>
+                    <span>Multi-Store SKU Processing</span>
                   </li>
                   <li className="flex items-center space-x-2">
                     <CheckCircle2 className="h-4 w-4 text-purple-400 shrink-0" />
@@ -560,33 +551,70 @@ export default function Welcome({ auth }) {
 
               <Link
                 href={user ? route('dashboard') : route('register')}
-                className="mt-8 block text-center rounded-xl bg-purple-600 py-3 text-xs font-bold text-white shadow-lg shadow-purple-600/30 hover:bg-purple-500 transition"
+                className="mt-8 block text-center rounded-xl border border-zinc-800 bg-zinc-900 py-3 text-xs font-bold text-white hover:border-zinc-700 transition"
               >
-                Get 500 Drops ({formatPrice(500)})
+                Get 1,299 Drops ({formatPrice(1299)})
               </Link>
             </div>
 
-            {/* Enterprise Pack (€1,500) */}
-            <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-6 flex flex-col justify-between">
+            {/* 3. Pro Merchant (€2,499) — Popular */}
+            <div className="rounded-2xl border border-purple-500/40 bg-gradient-to-b from-purple-950/20 to-zinc-950 p-6 flex flex-col justify-between shadow-2xl relative">
+              <div className="absolute -top-3 right-6 rounded-full bg-purple-600 px-3 py-0.5 text-[10px] font-bold text-white uppercase tracking-wider shadow">
+                Most Popular
+              </div>
+
               <div>
-                <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Enterprise Suite</span>
+                <span className="text-xs font-bold text-purple-400 uppercase tracking-wider">Pro Merchant</span>
                 <div className="mt-3 flex items-baseline">
-                  <span className="text-4xl font-black text-white">{formatPrice(1500)}</span>
+                  <span className="text-3xl font-black text-white">{formatPrice(2499)}</span>
                 </div>
-                <p className="text-xs text-zinc-400 mt-2">1,500 Product Drops ({formatPrice(1)} / request).</p>
+                <p className="text-xs text-zinc-400 mt-2">2,499 Product Drops ({formatPrice(1)} / request).</p>
 
                 <ul className="mt-6 space-y-2.5 text-xs text-zinc-300">
                   <li className="flex items-center space-x-2">
                     <CheckCircle2 className="h-4 w-4 text-purple-400 shrink-0" />
-                    <span>1,500 Full Product Drops</span>
+                    <span>2,499 Full Product Drops</span>
                   </li>
                   <li className="flex items-center space-x-2">
                     <CheckCircle2 className="h-4 w-4 text-purple-400 shrink-0" />
-                    <span>Dedicated Priority Account Support</span>
+                    <span>Priority Engine Processing Speed</span>
                   </li>
                   <li className="flex items-center space-x-2">
                     <CheckCircle2 className="h-4 w-4 text-purple-400 shrink-0" />
-                    <span>Generation History Export</span>
+                    <span>Priority Account Support (SLA 24-48h)</span>
+                  </li>
+                </ul>
+              </div>
+
+              <Link
+                href={user ? route('dashboard') : route('register')}
+                className="mt-8 block text-center rounded-xl bg-purple-600 py-3 text-xs font-bold text-white shadow-lg shadow-purple-600/30 hover:bg-purple-500 transition"
+              >
+                Get 2,499 Drops ({formatPrice(2499)})
+              </Link>
+            </div>
+
+            {/* 4. Institutional Scale (€4,299) */}
+            <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-6 flex flex-col justify-between">
+              <div>
+                <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Institutional Scale</span>
+                <div className="mt-3 flex items-baseline">
+                  <span className="text-3xl font-black text-white">{formatPrice(4299)}</span>
+                </div>
+                <p className="text-xs text-zinc-400 mt-2">4,299 Product Drops ({formatPrice(1)} / request).</p>
+
+                <ul className="mt-6 space-y-2.5 text-xs text-zinc-300">
+                  <li className="flex items-center space-x-2">
+                    <CheckCircle2 className="h-4 w-4 text-purple-400 shrink-0" />
+                    <span>4,299 Full Product Drops</span>
+                  </li>
+                  <li className="flex items-center space-x-2">
+                    <CheckCircle2 className="h-4 w-4 text-purple-400 shrink-0" />
+                    <span>High-Volume Bulk Inventory Sync</span>
+                  </li>
+                  <li className="flex items-center space-x-2">
+                    <CheckCircle2 className="h-4 w-4 text-purple-400 shrink-0" />
+                    <span>Official B2B PDF Tax Invoice</span>
                   </li>
                 </ul>
               </div>
@@ -595,7 +623,73 @@ export default function Welcome({ auth }) {
                 href={user ? route('dashboard') : route('register')}
                 className="mt-8 block text-center rounded-xl border border-zinc-800 bg-zinc-900 py-3 text-xs font-bold text-white hover:border-zinc-700 transition"
               >
-                Get 1,500 Drops ({formatPrice(1500)})
+                Get 4,299 Drops ({formatPrice(4299)})
+              </Link>
+            </div>
+
+            {/* 5. Enterprise Suite (€6,499) */}
+            <div className="rounded-2xl border border-zinc-800 bg-zinc-950 p-6 flex flex-col justify-between">
+              <div>
+                <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Enterprise Suite</span>
+                <div className="mt-3 flex items-baseline">
+                  <span className="text-3xl font-black text-white">{formatPrice(6499)}</span>
+                </div>
+                <p className="text-xs text-zinc-400 mt-2">6,499 Product Drops ({formatPrice(1)} / request).</p>
+
+                <ul className="mt-6 space-y-2.5 text-xs text-zinc-300">
+                  <li className="flex items-center space-x-2">
+                    <CheckCircle2 className="h-4 w-4 text-purple-400 shrink-0" />
+                    <span>6,499 Full Product Drops</span>
+                  </li>
+                  <li className="flex items-center space-x-2">
+                    <CheckCircle2 className="h-4 w-4 text-purple-400 shrink-0" />
+                    <span>Dedicated Account Manager</span>
+                  </li>
+                  <li className="flex items-center space-x-2">
+                    <CheckCircle2 className="h-4 w-4 text-purple-400 shrink-0" />
+                    <span>Generation History & Telemetry Export</span>
+                  </li>
+                </ul>
+              </div>
+
+              <Link
+                href={user ? route('dashboard') : route('register')}
+                className="mt-8 block text-center rounded-xl border border-zinc-800 bg-zinc-900 py-3 text-xs font-bold text-white hover:border-zinc-700 transition"
+              >
+                Get 6,499 Drops ({formatPrice(6499)})
+              </Link>
+            </div>
+
+            {/* 6. Ultimate Syndicate (€8,999) */}
+            <div className="rounded-2xl border border-purple-500/40 bg-zinc-950 p-6 flex flex-col justify-between shadow-2xl">
+              <div>
+                <span className="text-xs font-bold text-purple-400 uppercase tracking-wider">Ultimate Syndicate</span>
+                <div className="mt-3 flex items-baseline">
+                  <span className="text-3xl font-black text-white">{formatPrice(8999)}</span>
+                </div>
+                <p className="text-xs text-zinc-400 mt-2">8,999 Product Drops ({formatPrice(1)} / request).</p>
+
+                <ul className="mt-6 space-y-2.5 text-xs text-zinc-300">
+                  <li className="flex items-center space-x-2">
+                    <CheckCircle2 className="h-4 w-4 text-purple-400 shrink-0" />
+                    <span>8,999 Full Product Drops</span>
+                  </li>
+                  <li className="flex items-center space-x-2">
+                    <CheckCircle2 className="h-4 w-4 text-purple-400 shrink-0" />
+                    <span>Custom API Rate Limit Expansion</span>
+                  </li>
+                  <li className="flex items-center space-x-2">
+                    <CheckCircle2 className="h-4 w-4 text-purple-400 shrink-0" />
+                    <span>Priority Support SLA (24h)</span>
+                  </li>
+                </ul>
+              </div>
+
+              <Link
+                href={user ? route('dashboard') : route('register')}
+                className="mt-8 block text-center rounded-xl bg-purple-600 py-3 text-xs font-bold text-white shadow-lg shadow-purple-600/30 hover:bg-purple-500 transition"
+              >
+                Get 8,999 Drops ({formatPrice(8999)})
               </Link>
             </div>
 
