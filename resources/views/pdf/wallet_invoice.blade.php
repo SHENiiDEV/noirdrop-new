@@ -147,7 +147,7 @@
         <tr>
             <td>
                 <div class="logo-title">Noir<span class="logo-accent">drop</span></div>
-                <div class="company-subtitle">1-Click B2B Product Generation Engine</div>
+                <div class="company-subtitle">1-Click B2B Product Generation Engine &bull; https://noirdrop.co.uk</div>
             </td>
             <td class="invoice-badge">
                 <div class="invoice-title">OFFICIAL RECEIPT</div>
@@ -162,12 +162,13 @@
             <td style="padding-right: 15px;">
                 <div class="section-title">Merchant of Record (Issuer)</div>
                 <div class="address-box">
-                    <strong>INCHWARD LIMITED</strong><br>
-                    Company Number: 16021412<br>
+                    <strong>HARTDELL LIMITED</strong><br>
+                    Company Number: 16021824<br>
                     Academy House, 11 Dunraven Place<br>
                     Bridgend, Mid Glamorgan, CF31 1JF<br>
                     United Kingdom<br>
-                    Email: info@voltoria.co.uk
+                    Website: https://noirdrop.co.uk<br>
+                    Email: support@noirdrop.co.uk
                 </div>
             </td>
             <td style="padding-left: 15px;">
@@ -233,9 +234,9 @@
 
     <!-- Legal Notice Footer -->
     <div class="legal-notice">
-        INCHWARD LIMITED is registered in England and Wales under Company Number 16021412.<br>
+        HARTDELL LIMITED is registered in England and Wales under Company Number 16021824.<br>
         Registered address: Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, CF31 1JF, United Kingdom.<br>
-        14-day unused credit refund guarantee applies in accordance with UK commercial terms. Generated under UK jurisdiction.
+        14-day unused credit refund guarantee applies in accordance with UK commercial terms. Generated under UK jurisdiction. https://noirdrop.co.uk
     </div>
 
 </body>

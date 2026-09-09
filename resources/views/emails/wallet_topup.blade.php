@@ -59,9 +59,9 @@
         </div>
 
         <div class="footer">
-            INCHWARD LIMITED — Company Number 16021412<br>
+            HARTDELL LIMITED — Company Number 16021824<br>
             Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, CF31 1JF, United Kingdom<br>
-            Email: info@voltoria.co.uk | support@noirdrop.co.uk
+            Website: https://noirdrop.co.uk &bull; Email: support@noirdrop.co.uk
         </div>
     </div>
 </body>

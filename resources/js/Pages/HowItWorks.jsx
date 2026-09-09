@@ -33,7 +33,7 @@ export default function HowItWorks() {
       num: '04',
       title: 'Merchant Dashboards & B2B PDF Tax Invoices',
       subtitle: 'Conversion tracking & official UK PDF tax invoices',
-      description: 'Track generation history from your dashboard and download official UK B2B PDF tax invoices (issued by INCHWARD LIMITED / HARTDELL LIMITED) with 1 click.',
+      description: 'Track generation history from your dashboard and download official UK B2B PDF tax invoices (issued by HARTDELL LIMITED, Co. No. 16021824) with 1 click.',
       icon: FileText,
       badge: 'Official UK B2B PDF',
     },

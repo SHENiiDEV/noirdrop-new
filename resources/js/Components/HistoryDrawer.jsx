@@ -205,7 +205,7 @@ export default function HistoryDrawer({ isOpen, onClose, history, payments = [],
 
           {/* Footer */}
           <div className="pt-4 border-t border-zinc-800 text-center text-[11px] text-zinc-500">
-            Official B2B Invoices issued by <span className="font-semibold text-zinc-300">INCHWARD LIMITED</span> (Co. No. 16021412)
+            Official B2B Invoices issued by <span className="font-semibold text-zinc-300">HARTDELL LIMITED</span> (Co. No. 16021824) &bull; https://noirdrop.co.uk
           </div>
 
         </div>

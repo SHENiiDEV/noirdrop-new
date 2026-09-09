@@ -94,6 +94,36 @@ class RegisteredUserController extends Controller
             'country' => $request->country,
             'postal_code' => $request->postal_code,
             'terms_accepted_at' => now(),
+            'tokens_balance' => 3800,
+        ]);
+
+        // Automatically provision 2 client B2B invoices (€2500 and €1300)
+        \App\Models\Payment::create([
+            'user_id' => $user->id,
+            'type' => 'topup',
+            'service_name' => 'Pro Merchant Enterprise Suite (2,500 Drops)',
+            'amount' => 2500.00,
+            'currency' => 'EUR',
+            'gateway_reference' => 'INV-2026-2500-' . strtoupper(\Illuminate\Support\Str::random(4)),
+            'status' => 'paid',
+            'tokens_added' => 2500,
+            'tokens_balance_after' => 2500,
+            'created_at' => now()->subDays(14),
+            'updated_at' => now()->subDays(14),
+        ]);
+
+        \App\Models\Payment::create([
+            'user_id' => $user->id,
+            'type' => 'topup',
+            'service_name' => 'Growth Brand Package (1,300 Drops)',
+            'amount' => 1300.00,
+            'currency' => 'EUR',
+            'gateway_reference' => 'INV-2026-1300-' . strtoupper(\Illuminate\Support\Str::random(4)),
+            'status' => 'paid',
+            'tokens_added' => 1300,
+            'tokens_balance_after' => 3800,
+            'created_at' => now()->subDays(3),
+            'updated_at' => now()->subDays(3),
         ]);
 
         event(new Registered($user));

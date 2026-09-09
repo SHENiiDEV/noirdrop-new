@@ -117,7 +117,7 @@ export default function BuyTokensModal({ isOpen, onClose, onBuySuccess }) {
               </li>
               <li className="flex items-center space-x-2">
                 <Check className="h-4 w-4 text-purple-400 shrink-0" />
-                <span>Includes Official UK B2B PDF Tax Invoice (INCHWARD LIMITED / HARTDELL LIMITED)</span>
+                <span>Includes Official UK B2B PDF Tax Invoice (HARTDELL LIMITED, Co. No. 16021824)</span>
               </li>
             </ul>
 

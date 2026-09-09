@@ -47,7 +47,7 @@ class ContactTest extends TestCase
             'name' => 'John Merchant',
             'email' => 'john@merchantstore.com',
             'subject' => 'Question about B2B Tax Invoice',
-            'message' => 'Hello, I would like to confirm my tax details for INCHWARD LIMITED.',
+            'message' => 'Hello, I would like to confirm my tax details for HARTDELL LIMITED.',
         ]);
 
         $response->assertRedirect();

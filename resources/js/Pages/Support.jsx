@@ -13,7 +13,7 @@ export default function Support({ supportEmail = 'support@noirdrop.co.uk' }) {
     },
     {
       q: 'How do B2B Drop token credit packages work?',
-      a: 'Tokens represent digital execution credits where 1 Drop Request = 1€ (or currency equivalent). Packages range from €100 for 100 Drops to €1,500 for 1,500 Drops. Credits never expire and remain active on your account balance until redeemed.',
+      a: 'Tokens represent digital execution credits where 1 Drop Request = 1€ (or currency equivalent). Packages range from €659 for 659 Drops to €8,999 for 8,999 Drops. Credits never expire and remain active on your account balance until redeemed.',
     },
     {
       q: 'What is the 14-day refund policy?',
@@ -21,7 +21,7 @@ export default function Support({ supportEmail = 'support@noirdrop.co.uk' }) {
     },
     {
       q: 'How do I download official UK B2B PDF tax invoices?',
-      a: 'Official B2B tax invoices (issued by INCHWARD LIMITED / HARTDELL LIMITED) are generated automatically for every purchase and drop. You can download them anytime from your Dashboard history drawer or directly via the link attached to your email receipts.',
+      a: 'Official B2B tax invoices (issued by HARTDELL LIMITED, Co. No. 16021824) are generated automatically for every purchase and drop. You can download them anytime from your Dashboard history drawer or directly via the link attached to your email receipts.',
     },
     {
       q: 'How does Telegram & API sync integration work?',
